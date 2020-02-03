@@ -1,0 +1,197 @@
+---
+title: "Kaiying Jiang_APM466A1"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r}
+library(readr)
+sf <- read_csv("C:/Users/Kaiying Jiang/Desktop/Spot rate.csv")
+fr <- read_csv("C:/Users/Kaiying Jiang/Desktop/Forward rate.csv")
+dk <- read_csv("C:/Users/Kaiying Jiang/Desktop/Pure_data.csv",col_names = FALSE)
+library(jrvFinance)
+bond.yield(settle="2012-04-15", mature="2022-01-01", coupon=8e-2, price=95) #import jrvFinance package 
+library(readxl)
+bp <- read_excel("C:/Users/Kaiying Jiang/Desktop/A1_Bond.xlsx")
+pd <- read_excel("C:/Users/Kaiying Jiang/Desktop/Pure_Value.xlsx")
+```
+
+```{r}
+p1<- pd$b1
+p2<- pd$b2
+p3<- pd$b3
+p4<- pd$b4
+p5<- pd$b5
+p6<- pd$b6
+p7<- pd$b7
+p8<- pd$b8
+p9<- pd$b9
+p10<- pd$b10
+ytm1=bond.yields(settle="2020-01-02", mature=c("2020-09-01", "2021-02-01","2021-08-01","2022-02-01","2022-11-15","2023-03-01","2023-06-01","2024-03-01","2024-09-01","2025-03-01"),freq=2,
+            coupon=c(p1[11],p2[11],p3[11],p4[11],p5[11],p6[11],p7[11],p8[11],p9[11],p10[11]),
+            price=c(p1[1],p2[1],p3[1],p4[1],p5[1],p6[1],p7[1],p8[1],p9[1],p10[1]))
+ytm2=bond.yields(settle="2020-01-03", mature=c("2020-09-01", "2021-02-01","2021-08-01","2022-02-01","2022-11-15","2023-03-01","2023-06-01","2024-03-01","2024-09-01","2025-03-01"),freq=2,
+            coupon=c(p1[11],p2[11],p3[11],p4[11],p5[11],p6[11],p7[11],p8[11],p9[11],p10[11]),
+            price=c(p1[2],p2[2],p3[2],p4[2],p5[2],p6[2],p7[2],p8[2],p9[2],p10[2]))
+ytm3=bond.yields(settle="2020-01-06", mature=c("2020-09-01", "2021-02-01","2021-08-01","2022-02-01","2022-11-15","2023-03-01","2023-06-01","2024-03-01","2024-09-01","2025-03-01"),freq=2,
+            coupon=c(p1[11],p2[11],p3[11],p4[11],p5[11],p6[11],p7[11],p8[11],p9[11],p10[11]),
+            price=c(p1[3],p2[3],p3[3],p4[3],p5[3],p6[3],p7[3],p8[3],p9[3],p10[3]))
+ytm4=bond.yields(settle="2020-01-07", mature=c("2020-09-01", "2021-02-01","2021-08-01","2022-02-01","2022-11-15","2022-01-25","2023-03-01","2023-06-01","2024-03-01","2024-09-01","2025-03-01"),freq=2,
+            coupon=c(p1[11],p2[11],p3[11],p4[11],p5[11],p6[11],p7[11],p8[11],p9[11],p10[11]),
+            price=c(p1[4],p2[4],p3[4],p4[4],p5[4],p6[4],p7[4],p8[4],p9[4],p10[4]))
+ytm5=bond.yields(settle="2020-01-08", mature=c("2020-09-01", "2021-02-01","2021-08-01","2022-02-01","2022-11-15","2023-03-01","2023-06-01","2024-03-01","2024-09-01","2025-03-01"),freq=2,
+            coupon=c(p1[11],p2[11],p3[11],p4[11],p5[11],p6[11],p7[11],p8[11],p9[11],p10[11]),
+            price=c(p1[5],p2[5],p3[5],p4[5],p5[5],p6[5],p7[5],p8[5],p9[5],p10[5]))
+ytm6=bond.yields(settle="2020-01-09", mature=c("2020-09-01", "2021-02-01","2021-08-01","2022-02-01","2022-11-15","2023-03-01","2023-06-01","2024-03-01","2024-09-01","2025-03-01"),freq=2,
+            coupon=c(p1[11],p2[11],p3[11],p4[11],p5[11],p6[11],p7[11],p8[11],p9[11],p10[11]),
+            price=c(p1[6],p2[6],p3[6],p4[6],p5[6],p6[6],p7[6],p8[6],p9[6],p10[6]))
+ytm7=bond.yields(settle="2020-01-10", mature=c("2020-09-01", "2021-02-01","2021-08-01","2022-02-01","2022-11-15","2023-03-01","2023-06-01","2024-03-01","2024-09-01","2025-03-01"),freq=2,
+            coupon=c(p1[11],p2[11],p3[11],p4[11],p5[11],p6[11],p7[11],p8[11],p9[11],p10[11]),
+            price=c(p1[7],p2[7],p3[7],p4[7],p5[7],p6[7],p7[7],p8[7],p9[7],p10[7]))
+ytm8=bond.yields(settle="2020-01-13", mature=c("2020-09-01", "2021-02-01","2021-08-01","2022-02-01","2022-11-15","2023-03-01","2023-06-01","2024-03-01","2024-09-01","2025-03-01"),freq=2,
+            coupon=c(p1[11],p2[11],p3[11],p4[11],p5[11],p6[11],p7[11],p8[11],p9[11],p10[11]),
+            price=c(p1[8],p2[8],p3[8],p4[8],p5[8],p6[8],p7[8],p8[8],p9[8],p10[8]))
+
+ytm9=bond.yields(settle="2020-01-14", mature=c("2020-09-01", "2021-02-01","2021-08-01","2022-02-01","2022-11-15","2023-03-01","2023-06-01","2024-03-01","2024-09-01","2025-03-01"),freq=2,
+            coupon=c(p1[11],p2[11],p3[11],p4[11],p5[11],p6[11],p7[11],p8[11],p9[11],p10[11]),
+            price=c(p1[9],p2[9],p3[9],p4[9],p5[9],p6[9],p7[9],p8[9],p9[9],p10[9]))
+ytm10=bond.yields(settle="2020-01-15", mature=c("2020-09-01", "2021-02-01","2021-08-01","2022-02-01","2022-11-15","2023-03-01","2023-06-01","2024-03-01","2024-09-01","2025-03-01"),freq=2,
+            coupon=c(p1[11],p2[11],p3[11],p4[11],p5[11],p6[11],p7[11],p8[11],p9[11],p10[11]),
+            price=c(p1[10],p2[10],p3[10],p4[10],p5[10],p6[10],p7[10],p8[10],p9[10],p10[10]))
+
+```
+
+```{r}
+plot(ytm1,type = "o",col = "cyan", xlab = "#year", ylab = "ytm", main = "yield to maturity",ylim=c(0.015,0.022),xlim=c(1,10))
+lines(ytm2, type = "o", col = "red")
+lines(ytm3, type = "o", col = "black")
+lines(ytm4, type = "o", col = "tan")
+lines(ytm5, type = "o", col = "yellow")
+lines(ytm6, type = "o", col = "blue")
+lines(ytm7, type = "o", col = "purple")
+lines(ytm8, type = "o", col = "brown")
+lines(ytm9, type = "o", col = "green")
+lines(ytm10, type = "o", col = "grey")
+legend("topright", legend=c("JAN2,2020", "JAN3,2020","JAN6,2020","JAN7,2020","JAN8,2020","JAN9,2020","JAN10,2020","JAN13,2020","JAN14,2020","JAN15,2020"),
+       col=c("cyan","red","black","tan","yellow","blue","purple","brown","green","grey"),lty=1:2, cex=0.8,
+       text.font=4)
+```
+
+```{r}
+plot(smooth.spline(ytm1),type = "o",col = "cyan", xlab = "#year", ylab = "ytm", main = "Interpolation yield to maturity",ylim=c(0.015,0.022),xlim=c(1,10))
+lines(smooth.spline(ytm2), type = "o", col = "red")
+lines(smooth.spline(ytm3), type = "o", col = "black")
+lines(smooth.spline(ytm4), type = "o", col = "tan")
+lines(smooth.spline(ytm5), type = "o", col = "yellow")
+lines(smooth.spline(ytm6), type = "o", col = "blue")
+lines(smooth.spline(ytm7), type = "o", col = "purple")
+lines(smooth.spline(ytm8), type = "o", col = "brown")
+lines(smooth.spline(ytm9), type = "o", col = "green")
+lines(smooth.spline(ytm10), type = "o", col = "grey")
+legend("topright", legend=c("JAN2,2020", "JAN3,2020","JAN6,2020","JAN7,2020","JAN8,2020","JAN9,2020","JAN10,2020","JAN13,2020","JAN14,2020","JAN15,2020"),
+       col=c("cyan","red","black","tan","yellow","blue","purple","brown","green","grey"),lty=1:2, cex=0.8,
+       text.font=4)
+
+```
+
+
+
+```{r}
+#pseudo-code of spot rate:
+For i in [1,10]:
+m1=matrix(nrow=1,ncol=10)
+#first set i in the range of 1 to 10 bonds,
+  if i=1, r[i]=-log(p1[1]/(100+coupon*100))/time[1],
+#p1 is the price of first bond, time 1 is the time to maturity if i, this step is compute bootstrapping spot rate for less than 6 months, by viewing as a zero coupon rate.
+  else: sum(coupon*100*exp(-r[i-1]*t[i-1]))+((1+coupon)*100))*(exp(-r[i]*t[i]))=p1[i]
+  m1.append(r[i])
+#coupon= coupon rate for first bond in this case.This is the application of bootstrapping for more than six months.
+#Looping i for i from 1 to 10, all r[i-1] is known, solve equation for r[i].
+#m1 will return a 1*10 matrix with spot rate from 1 to 10, which is 0.5 year to 5 years. 
+#Then loop this formula for bond 2 to bond 10, 10 spot rate matrix will be find.
+
+#pseudo-code of calculating forward rate
+t=c(1,2,3,4,5)
+for i in (1,4),
+  for j in (2,5)
+  F[i,j]=(m[j]*t[j]-m[i]*T[i])/(t[j]-t[i])
+  return F[i,j]
+#By forward rate formula, and this bond is continue compounded, so forward rate is calculated by spot rate one times after.
+```
+
+```{r}
+sr1=sf$b1 #label all number into column
+sr2=sf$b2
+sr3=sf$b3
+sr4=sf$b4
+sr5=sf$b5
+sr6=sf$b6
+sr7=sf$b7
+sr8=sf$b8
+sr9=sf$b9
+sr10=sf$b10
+year<-c(0.5,1,1.5,2,2.5,3,3.5,4,4.5,5)
+x<-c(1,2,3,4,5,6,7,8,9,10)
+plot(year,sr1, type = "o",col = "red", xlab = "#year", ylab = "spot", main = "spot rate",ylim=c(0,0.2))
+lines(year,sr2, type = "o", col = "cyan")
+lines(year, sr3, type = "o", col = "black")
+lines(year,sr4, type = "o", col = "tan")
+lines(year,sr5, type = "o", col = "yellow")
+lines(year,sr6, type = "o", col = "blue")
+lines(year,sr7, type = "o", col = "purple")
+lines(year,sr8, type = "o", col = "brown")
+lines(year,sr9, type = "o", col = "green")
+lines(year,sr10, type = "o", col = "grey")
+legend("topright", legend=c("JAN2,2020", "JAN3,2020","JAN6,2020","JAN7,2020","JAN8,2020","JAN9,2020","JAN10,2020","JAN13,2020","JAN14,2020","JAN15,2020"),
+       col=c("red","cyan","black","tan","yellow","blue","purple","brown","green","grey"),lty=1:2, cex=0.8,
+       text.font=4)
+```
+
+```{r}
+fr1=fr$f1 #label all number into column
+fr2=fr$f2
+fr3=fr$f3
+fr4=fr$f4
+fr5=fr$f5
+fr6=fr$f6
+fr7=fr$f7
+fr8=fr$f8
+fr9=fr$f9
+fr10=fr$f10
+year2<-c(1,2,3,4)
+plot(year2,fr1,type = "o",col = "red", xlab = "#year", ylab = "Forward", main = "Forward Rate",ylim=c(-0.1,0.1))
+lines(year2,fr2, type = "o", col = "cyan")
+lines(year2, fr3, type = "o", col = "black")
+lines(year2,fr4, type = "o", col = "tan")
+lines(year2,fr5, type = "o", col = "yellow")
+lines(year2,fr6, type = "o", col = "blue")
+lines(year2,fr7, type = "o", col = "purple")
+lines(year2,fr8, type = "o", col = "brown")
+lines(year2,fr9, type = "o", col = "green")
+lines(year2,fr10, type = "o", col = "grey")
+legend("topright", legend=c("JAN2,2020", "JAN3,2020","JAN6,2020","JAN7,2020","JAN8,2020","JAN9,2020","JAN10,2020","JAN13,2020","JAN14,2020","JAN15,2020"),
+       col=c("red","cyan","black","tan","yellow","blue","purple","brown","green","grey"),lty=1:2, cex=0.8,
+       text.font=4)
+```
+```{r}
+#part5
+yma <- read_csv("C:/Users/Kaiying Jiang/Desktop/yield_matrix2.csv")
+Y=data.matrix(yma)#convert into matrix format
+y=cov(Y)
+#y is the covariance matrix of yield to maturity log return
+fma <- read_csv("C:/Users/Kaiying Jiang/Desktop/Forward_matrix.csv")
+head(fma)
+fw=data.matrix(fma)#convert into matrix format
+f=cov(fw)
+#f is the covariance matrix of yield to maturity log return
+```
+```{r}
+#part 6
+ey<- eigen(y)#eigenmatrix of yield to maturity log return covariance matrix
+ey$values #ytm cov matrix eigen value
+ef<- eigen(f)#eigenmatrix of forward rate log return covariance matrix
+ef$values #ytm cov matrix eigen value
+```
